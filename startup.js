@@ -1,4 +1,4 @@
 var prefix = '!';
-var token = 'tokenIDhere';
+var token = 'TokenIDHERE';
 exports.token = token;
 exports.prefix = prefix;
