@@ -41,15 +41,11 @@ bot.on('message', msg => {
         msg.reply("HELLO FRIEND!");
     }
 
-    if (msg.content === "yo") {
+    if (msg.content === "yo" || msg.content === "Yo") {
         msg.reply("yo");
     }
 
-    if (msg.content === "Yo") {
-        msg.reply("Yo");
-    }
-
-    if (msg.content === "hey") {
+    if (msg.content === "hey" || msg.content === "Hey") {
         msg.reply("hey");
     }
 
