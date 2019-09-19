@@ -7,19 +7,21 @@ var myModule = require('./token');
 var token = myModule.token;
 
 //Discord bot Prefix
-const Prefix = '$$';
+const Prefix = '!';
 
 //Log message when it turns on successfully. 
 bot.on('ready', () => {
     console.log('This bot is online!');
 })
 
-//Text Stuff 1
+// Text Stuff 1
+// Will move this on to another file in the future
 
 bot.on('message', message => {
 
     let args = message.content.substring(Prefix.length).split(" ");
     switch (args[0]) {
+        //Basic commands
         case 'ping':
             message.channel.sendMessage('pong!');
             break;
@@ -31,6 +33,14 @@ bot.on('message', message => {
             break;
         case 'help':
             message.channel.sendMessage("You don't need help, yet");
+            break;
+
+            //Clear Command (need to give bot admin to do so)
+        case 'clear':
+            if (!args[1]) {
+                return message.channel.sendMessage('Tell me how many messages to clear, yo');
+            }
+            message.channel.bulkDelete(args[1]);
             break;
 
     }
