@@ -9,7 +9,7 @@ var token = myModule.token; // Discord bot Token
 
 var prefix = myModule.prefix; // Discord bot Prefix
 
-var version = "Beta 1.0.0"
+var version = "Beta 1.0.0" // Current Version number
 
 //Log message when it turns on successfully. 
 
@@ -52,6 +52,8 @@ bot.on('message', message => {
 
 bot.on('message', message => {
 
+    //These are Text-Based commands, meaning they only deal with sending/recieving messages. No depth
+
     if (message.content === prefix + 'ping') {
         message.channel.sendMessage('pong!');
     }
@@ -64,6 +66,13 @@ bot.on('message', message => {
     if (message.content === prefix + 'help') {
         message.channel.sendMessage('I also need help, but no one ever does');
     }
+
+    if (message.content === prefix + 'yo' || message.content === prefix + 'Yo') {
+        message.channel.sendMessage("> Yo");
+    }
+
+    //More complex commands. Send messages, but deal with other discord stuff and some functions as well.
+
     if (message.content === prefix + 'server') {
         message.channel.sendMessage("This server's name is " + message.guild.name +
             ". There are " + message.guild.memberCount + " people here.");
@@ -72,19 +81,20 @@ bot.on('message', message => {
         message.channel.sendMessage("You are " + message.author.username);
     }
     if (message.content === prefix + 'coin' || message.content === prefix + 'flip') {
-        message.channel.sendMessage((Math.floor(Math.random() * 2) == 0) ? 'heads' : 'tails');
+        message.channel.sendMessage((Math.floor(Math.random() * 2) == 0) ? '> heads' : '> tails');
     }
-    /*
-    The next command will most likely be removed.
 
-    if (message.content === prefix + 'yo' || message.content === prefix + 'Yo') {
-        message.channel.sendMessage("yo");
-    } 
-    
+    /*
     Future Command will send a picture of your avatar.
     if (message.content === prefix + 'avatar') {
         message.channel.sendMessage();
     }
+
+    Future Command will chose a random number from 1 to x (!pick x), if not x, then 10, 100, 1000, etc.
+
+    Future Command will send some profile stuff as an embed (maybe)
+
+    Future Command will let server owner and mods to change prefix (Eventually, but not anytime soon)
     */
 
 })
