@@ -9,6 +9,8 @@ var token = myModule.token; // Discord bot Token
 
 var prefix = myModule.prefix; // Discord bot Prefix
 
+var version = "Beta 1.0.0"
+
 //Log message when it turns on successfully. 
 
 bot.on('ready', () => {
@@ -57,7 +59,7 @@ bot.on('message', message => {
         message.channel.sendMessage('ping!');
     }
     if (message.content === prefix + 'version') {
-        message.channel.sendMessage('I am currently on Beta 1.0.0');
+        message.channel.sendMessage('I am currently on ' + version);
     }
     if (message.content === prefix + 'help') {
         message.channel.sendMessage('I also need help, but no one ever does');
@@ -66,33 +68,46 @@ bot.on('message', message => {
         message.channel.sendMessage("This server's name is " + message.guild.name +
             ". There are " + message.guild.memberCount + " people here.");
     }
-    if (message.content === prefix + 'clear') {
-
-
-
+    if (message.content === prefix + 'me') {
+        message.channel.sendMessage("You are " + message.author.username);
     }
+    if (message.content === prefix + 'coin' || message.content === prefix + 'flip') {
+        message.channel.sendMessage((Math.floor(Math.random() * 2) == 0) ? 'heads' : 'tails');
+    }
+    /*
+    The next command will most likely be removed.
+
+    if (message.content === prefix + 'yo' || message.content === prefix + 'Yo') {
+        message.channel.sendMessage("yo");
+    } 
+    
+    Future Command will send a picture of your avatar.
+    if (message.content === prefix + 'avatar') {
+        message.channel.sendMessage();
+    }
+    */
+
 })
 
 
 
 
-bot.on('message', msg => {
-    if (msg.content === "HELLO") {
-        msg.reply("HELLO FRIEND!");
+bot.on('message', message => {
+    if (message.content === "HELLO") {
+        message.reply("HELLO FRIEND!");
     }
 
-    if (msg.content === "yo" || msg.content === "Yo") {
-        msg.reply("yo");
+    if (message.content === "yo" || message.content === "Yo") {
+        message.reply("yo");
     }
 
-    if (msg.content === "hey" || msg.content === "Hey") {
-        msg.reply("hey");
+    if (message.content === "hey" || message.content === "Hey") {
+        message.reply("hey");
     }
 
-    if (msg.content === "hello" || msg.content === "Hello") {
-        msg.reply("hello");
+    if (message.content === "hello" || message.content === "Hello") {
+        message.reply("hello");
     }
-
 
 
 })
