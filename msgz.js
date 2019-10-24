@@ -3,33 +3,35 @@ const bot = new Discord.Client();
 
 var myModule = require('./startup.js');
 
-var token = myModule.token; // Discord bot Token
-
 var prefix = myModule.prefix; // Discord bot Prefix
 
 bot.on('ready', () => {
     console.log('MSGZ work!'); // Messages the console saying its online.
 })
 bot.on('message', message => {
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
 
     //These are Text-Based commands, meaning they only deal with sending/recieving messages. No depth
 
-    if (message.content === prefix + 'ping') {
+    if (command === 'ping') {
         message.channel.sendMessage('pong!');
     }
-    if (message.content === prefix + 'pong') {
+    if (command === 'pong') {
         message.channel.sendMessage('ping!');
     }
-    if (message.content === prefix + 'help') {
+    if (command === 'help') {
         message.channel.sendMessage('I also need help, but no one ever does');
     }
 
-    if (message.content === prefix + 'yo' || message.content === prefix + 'Yo') {
+    if (command === 'yo') {
         message.channel.sendMessage("> Yo");
     }
-
 })
 
+// Miscellaneous commands
 bot.on('message', message => {
     if (message.content === "HELLO") {
         message.reply("HELLO FRIEND!");
@@ -49,4 +51,4 @@ bot.on('message', message => {
 })
 
 
-bot.login(token)
+bot.login(myModule.token)

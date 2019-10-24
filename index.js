@@ -5,31 +5,35 @@ const bot = new Discord.Client();
 //Importing Token and Prefix from my private startup.js file
 var myModule = require('./startup.js');
 
-var token = myModule.token; // Discord bot Token
+// Future Will move commands into different folders. Found a very helpful video that I will be using as a reference. Stay tuned!
 
 var prefix = myModule.prefix; // Discord bot Prefix
 
-var version = "Beta 1.0.0" // Current Version number
+var version = "Beta 1.1.0" // Current Version number
 
 msgz = require('./msgz.js')
 
 bot.on('message', message => {
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
 
     //These are Text-Based commands, meaning they only deal with sending/recieving messages. No depth
 
-    if (message.content === prefix + 'version') {
+    if (command === 'version') {
         message.channel.sendMessage('I am currently on ' + version);
     }
     //More complex commands. Send messages, but deal with other discord stuff and some functions as well.
 
-    if (message.content === prefix + 'server') {
+    if (command === 'server') {
         message.channel.sendMessage("This server's name is " + message.guild.name +
             ". There are " + message.guild.memberCount + " people here.");
     }
-    if (message.content === prefix + 'me') {
+    if (command === 'me') {
         message.channel.sendMessage("You are " + message.author.username);
     }
-    if (message.content === prefix + 'coin' || message.content === prefix + 'flip') {
+    if (command === 'coin' || command === 'flip') {
         message.channel.sendMessage((Math.floor(Math.random() * 2) == 0) ? '> heads' : '> tails');
     }
 
@@ -52,9 +56,9 @@ bot.on('message', message => {
 
 bot.on('ready', () => {
     console.log('This bot is online!'); // Messages the console saying its online.
-    bot.user.setGame("Minecr- wait... Dogs can't play games!"); // Plays a game!
+    bot.user.setGame("Spooky Doggo Borks"); // Plays a game!
 })
 
 
 //Logging in
-bot.login(token)
+bot.login(myModule.token)
