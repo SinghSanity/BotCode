@@ -9,6 +9,8 @@
   "author": "Amandeep Singh",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "ascii-table": "0.0.9",
+    "discord.js": "^11.5.1",
+    "node-fetch": "^2.6.0"
   }
 }
